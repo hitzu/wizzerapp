@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  be_boilerplate:
+    container_name: 'wizzerapp'
+    image: 'postgres:latest'
+    restart: always
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=wizzerapp
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5433:5433"
+    command: -p 5433
