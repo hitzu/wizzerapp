@@ -11,6 +11,7 @@ export const errorHandler: ErrorRequestHandler = async (
   next: NextFunction
 ): Promise<void> => {
   try {
+    console.log('entro al error por un trow')
     const { ValidationError } = Joi;
     console.error(
       `detailed information about the error in the service: `,

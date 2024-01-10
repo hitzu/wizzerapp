@@ -18,3 +18,7 @@
 - conversation entity crud created
 - minnor fixes on orm configuration
 - initial config for messages entity created
+
+### 0.4.0
+
+- menssagerie functionality created

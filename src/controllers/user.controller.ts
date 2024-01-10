@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { UserRepository } from '../orm/repositories/UserRepository';
+import { GeneralError } from '../classes/general-error';
 
 const userRepository = new UserRepository();
 
@@ -30,8 +31,10 @@ const getUserById = async (req: Request, res: Response) => {
     const { id } = req.params;
     const userFound = await userRepository.findOne({ where: {id} });
 
-    if (!userFound) res.status(404).send({'error': 'user not found'});
-    else res.status(200).send(userFound);
+    if (!userFound) {
+      throw new GeneralError(new Error, 'message not found', 404);
+    }
+    res.status(200).send(userFound);
   } catch (error) {
     res.status(error.code | 500).send(error);
   }

@@ -19,7 +19,7 @@
       "@services/*": ["src/services/*"],
       "@interfaces/*": ["src/interfaces/*"],
       "@middlewares/*": ["src/middlewares/*"],
-      "@dbCommands/*": ["src/orm/commands/*"]
+      "@dbRepositories/*": ["src/orm/repositories/*"]
     },
     "plugins": [
       {

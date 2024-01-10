@@ -14,13 +14,13 @@ export class Message extends Base {
   type: string;
 
   // For multimedia messages, you might store a URL or other reference.
-  @Column({ nullable: true })
+  @Column({ name : 'multimedia_url', nullable: true })
   multimediaUrl: string;
 
-  @Column({ type: 'varchar' })
+  @Column({ name: 'user_id', type: 'varchar' })
   userId: string;
 
-  @Column({ type: 'varchar' })
+  @Column({ name: 'conversation_id', type: 'varchar' })
   conversationId: string;
 
   @ManyToOne(() => User, (user) => user.messages)
