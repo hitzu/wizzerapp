@@ -19,18 +19,14 @@ export class DataSourceManager {
     options?: DataSourceOptions
   ): Promise<DataSource> {
     const _options = options || dataSourceOptions.get(name);
-    console.log('createDataSource', name, _options)
     return this.dataSources
       .set(name, await new DataSource(_options).initialize())
       .get(name);
   }
 
   public getDataSource(dataSourceName?: string): Promise<DataSource> {
-    console.log('estoy entrando aqui jejejeje');
     const isCreated = this.dataSources.get(dataSourceName || 'default');
-    console.log('is created', isCreated)
     if (!isCreated) {
-      console.log('voy a crear el datasource');
       return this.createDataSource(dataSourceName || 'default');
     }
     return isCreated as unknown as Promise<DataSource>;

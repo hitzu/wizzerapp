@@ -8,7 +8,6 @@ export class DBConnection {
     entityClass: EntityTarget<Entity>,
     dataSourceName?: string
   ): Promise<Repository<Entity>> {
-    console.log('estoy empezando el repositorio', dataSourceName);
     const dataSource = await this.getDataSource(dataSourceName);
     return dataSource.getRepository(entityClass);
   }

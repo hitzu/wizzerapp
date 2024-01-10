@@ -1,4 +1,4 @@
-import { swUserRouter } from './src/routes/user.router';
+import { swUserRouter } from './src/documentation';
 
 export const swDocument = {
   openapi: '3.0.0',
