@@ -12,3 +12,9 @@
 - user entity crud created
 - documentation for user entity
 - fix error joi validation
+
+### 0.3.2
+
+- conversation entity crud created
+- minnor fixes on orm configuration
+- initial config for messages entity created

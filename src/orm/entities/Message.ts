@@ -17,6 +17,12 @@ export class Message extends Base {
   @Column({ nullable: true })
   multimediaUrl: string;
 
+  @Column({ type: 'varchar' })
+  userId: string;
+
+  @Column({ type: 'varchar' })
+  conversationId: string;
+
   @ManyToOne(() => User, (user) => user.messages)
   @JoinColumn({ name: 'user_id' })
   user: User;

@@ -150,6 +150,9 @@ export const swGetUserByIdFunction = {
     '400': {
       description: 'joi validation error',
     },
+    '404': {
+      description: 'user not found',
+    },
     '500': {
       description: 'unknow error',
     }

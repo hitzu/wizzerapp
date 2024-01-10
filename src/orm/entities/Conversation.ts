@@ -1,5 +1,3 @@
-// conversation.entity.ts
-
 import { Entity, ManyToMany, JoinTable, OneToMany } from 'typeorm';
 import { User } from './User';
 import { Message } from './Message';

@@ -1,12 +1,11 @@
 import { Request, Response } from 'express';
 import { UserRepository } from '../orm/repositories/UserRepository';
 
+const userRepository = new UserRepository();
+
 const createUser = async (req: Request, res: Response) => {
   try {
-    const { name } = req.body;
-
-    const userRepository = new UserRepository();
-    
+    const { name } = req.body;    
     const userCreate = await userRepository.create({ name });
 
     res.status(200).send(userCreate);
@@ -17,9 +16,6 @@ const createUser = async (req: Request, res: Response) => {
 
 const getUsers = async (req: Request, res: Response) => {
   try {
-    const { name } = req.body;
-
-    const userRepository = new UserRepository();
     
     const usersFound = await userRepository.find();
 
@@ -32,13 +28,10 @@ const getUsers = async (req: Request, res: Response) => {
 const getUserById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    console.log('id', id);
-
-    const userRepository = new UserRepository();
-    
     const userFound = await userRepository.findOne({ where: {id} });
 
-    res.status(200).send(userFound);
+    if (!userFound) res.status(404).send({'error': 'user not found'});
+    else res.status(200).send(userFound);
   } catch (error) {
     res.status(error.code | 500).send(error);
   }
@@ -47,9 +40,6 @@ const getUserById = async (req: Request, res: Response) => {
 const updateUser = async (req: Request, res: Response) => {
   try {
     const { id, name } = req.body;
-
-    const userRepository = new UserRepository();
-    
     await userRepository.update(id, { name });
 
     res.status(204).send();
@@ -61,9 +51,6 @@ const updateUser = async (req: Request, res: Response) => {
 const deleteUser = async (req: Request, res: Response) => {
   try {
     const { id} = req.body;
-
-    const userRepository = new UserRepository();
-    
     await userRepository.softDelete(id);
 
     res.status(204).send();

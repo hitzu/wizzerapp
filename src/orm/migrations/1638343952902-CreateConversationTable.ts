@@ -37,6 +37,28 @@ export class CreateConversationTable1638343952902 implements MigrationInterface 
             name: "conversation_users_user",
             columns: [
                 {
+                    name: "id",
+                    type: "uuid",
+                    isPrimary: true,
+                    generationStrategy: "uuid",
+                    default: "uuid_generate_v4()"
+                },
+                {
+                    name: "created_at",
+                    type: "timestamp",
+                    default: "CURRENT_TIMESTAMP"
+                },
+                {
+                    name: "updated_at",
+                    type: "timestamp",
+                    default: "CURRENT_TIMESTAMP"
+                },
+                {
+                    name: "deleted_at",
+                    type: "timestamp",
+                    isNullable: true
+                },
+                {
                     name: "conversationId",
                     type: "uuid",
                     isNullable: false
