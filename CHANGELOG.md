@@ -32,3 +32,7 @@
 
 - initial script run all with npm run install
 - populate the databases after migrations
+
+### 0.7.0
+
+- functional test and unit test
