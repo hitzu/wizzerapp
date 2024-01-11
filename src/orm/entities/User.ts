@@ -1,7 +1,7 @@
 import { Entity, Column, OneToMany } from 'typeorm';
 import { Message } from './Message';
-import { Conversation } from './Conversation';
 import { Base } from './Base';
+import { ConversationUser } from './ConversationUser';
 
 @Entity()
 export class User extends Base {
@@ -12,6 +12,6 @@ export class User extends Base {
   @OneToMany(() => Message, (message) => message.user)
   messages: Message[];
 
-  @OneToMany(() => Conversation, (conversation) => conversation.users)
-  conversations: Conversation[];
+  @OneToMany(() => ConversationUser, conversationUser => conversationUser.user)
+  public conversationUser?: ConversationUser[];
 }

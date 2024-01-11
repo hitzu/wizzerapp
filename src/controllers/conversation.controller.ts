@@ -11,7 +11,7 @@ const createConversation = async (req: Request, res: Response) => {
     const conversationCreated = await conversationRepository.create({createdAt: new Date()});
     await conversationUserRepository.create({ userId, conversationId: conversationCreated.id });
 
-    res.status(201).send();
+    res.status(200).send(conversationCreated);
   } catch (error) {
     res.status(error.code | 500).send(error);
   }

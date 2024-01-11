@@ -1,6 +1,9 @@
 import { Request, Response } from 'express';
 import { UserRepository } from '../orm/repositories/UserRepository';
+import { ConversationUserRepository } from '../orm/repositories/ConversationUserRepository';
 import { GeneralError } from '../classes/general-error';
+import { Message } from '../orm/entities/Message';
+import { Conversation } from '../orm/entities/Conversation';
 
 const userRepository = new UserRepository();
 
@@ -62,4 +65,22 @@ const deleteUser = async (req: Request, res: Response) => {
   }
 };
 
-export { createUser, getUsers, getUserById, updateUser, deleteUser };
+const getUserConversationsWithMessages = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const conversationUserRepository = new ConversationUserRepository();
+    const qb = await conversationUserRepository.queryBuilder();
+
+    const messages = await qb.select(['ConversationUser'])
+    .innerJoinAndSelect('ConversationUser.conversation', 'conversation')
+    .innerJoinAndSelect('conversation.messages', 'messages')
+    .where('ConversationUser.user_id = :id', {id})
+    .getMany()
+
+    res.status(200).send(messages);
+  } catch (error) {
+    res.status(error.code | 500).send(error);
+  }
+};
+
+export { createUser, getUsers, getUserById, updateUser, deleteUser, getUserConversationsWithMessages };

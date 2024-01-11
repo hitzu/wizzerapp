@@ -59,12 +59,12 @@ export class CreateConversationTable1638343952902 implements MigrationInterface 
                     isNullable: true
                 },
                 {
-                    name: "conversationId",
+                    name: "conversation_id",
                     type: "uuid",
                     isNullable: false
                 },
                 {
-                    name: "userId",
+                    name: "user_id",
                     type: "uuid",
                     isNullable: false
                 }
@@ -72,14 +72,14 @@ export class CreateConversationTable1638343952902 implements MigrationInterface 
         }), true);
 
         await queryRunner.createForeignKey("conversation_users_user", new TableForeignKey({
-            columnNames: ["conversationId"],
+            columnNames: ["conversation_id"],
             referencedColumnNames: ["id"],
             referencedTableName: "conversation",
             onDelete: "CASCADE"
         }));
 
         await queryRunner.createForeignKey("conversation_users_user", new TableForeignKey({
-            columnNames: ["userId"],
+            columnNames: ["user_id"],
             referencedColumnNames: ["id"],
             referencedTableName: "user",
             onDelete: "CASCADE"
@@ -89,7 +89,7 @@ export class CreateConversationTable1638343952902 implements MigrationInterface 
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('user_conversation');
+        await queryRunner.dropTable('conversation_users_user');
         await queryRunner.dropTable('conversation', true);
     }
 }

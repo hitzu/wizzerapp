@@ -17,3 +17,7 @@ export const deleteUserResquestSchema = Joi.object().keys({
   id: Joi.string().required()
 });
 
+export const getUserConversationsWithMessagesResquestSchema = Joi.object().keys({
+  id: Joi.string().required()
+});
+

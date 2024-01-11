@@ -5,6 +5,7 @@ import {
   getUserById,
   updateUser,
   deleteUser,
+  getUserConversationsWithMessages
 } from '../controllers/user.controller';
 const api = Express.Router();
 import { validateSchema } from '../middlewares/validate-input-schema';
@@ -13,9 +14,11 @@ import {
   getUserByIdResquestSchema,
   updateUserResquestSchema,
   deleteUserResquestSchema,
+  getUserConversationsWithMessagesResquestSchema,
 } from '../schemas/index';
 
 api.get('/', getUsers);
+api.get('/:id/conversations', validateSchema(getUserConversationsWithMessagesResquestSchema, 'params'), getUserConversationsWithMessages);
 api.get('/:id', validateSchema(getUserByIdResquestSchema, 'params'), getUserById);
 api.post('/', validateSchema(createUserResquestSchema, 'body'), createUser);
 api.patch('/', validateSchema(updateUserResquestSchema, 'body'), updateUser);

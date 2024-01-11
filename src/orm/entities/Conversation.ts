@@ -1,14 +1,13 @@
-import { Entity, ManyToMany, JoinTable, OneToMany } from 'typeorm';
-import { User } from './User';
+import { Entity, OneToMany } from 'typeorm';
 import { Message } from './Message';
 import { Base } from './Base';
+import { ConversationUser } from './ConversationUser';
 
 @Entity()
 export class Conversation extends Base {
 
-  @ManyToMany(() => User)
-  @JoinTable()
-  users: User[];
+  @OneToMany(() => ConversationUser, conversationUser => conversationUser.conversation)
+  public conversationUser?: ConversationUser[];
 
   @OneToMany(() => Message, (message) => message.conversation)
   messages: Message[];

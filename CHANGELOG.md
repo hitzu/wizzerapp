@@ -21,4 +21,9 @@
 
 ### 0.4.0
 
-- menssagerie functionality created
+- messagerie functionality created
+
+### 0.5.1
+
+- get user report (conversations and messages)
+- fix orm relations between users and conversations
