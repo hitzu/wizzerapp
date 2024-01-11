@@ -27,3 +27,8 @@
 
 - get user report (conversations and messages)
 - fix orm relations between users and conversations
+
+### 0.6.0
+
+- initial script run all with npm run install
+- populate the databases after migrations

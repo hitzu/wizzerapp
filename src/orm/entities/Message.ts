@@ -5,7 +5,6 @@ import { Base } from './Base';
 
 @Entity()
 export class Message extends Base {
-
   @Column({ nullable: true })
   content: string;
 
@@ -14,8 +13,8 @@ export class Message extends Base {
   type: string;
 
   // For multimedia messages, you might store a URL or other reference.
-  @Column({ name : 'multimedia_url', nullable: true })
-  multimediaUrl: string;
+  @Column({ name: 'multimedia_url', nullable: true })
+  multimediaUrl?: string;
 
   @Column({ name: 'user_id', type: 'varchar' })
   userId: string;
@@ -23,11 +22,17 @@ export class Message extends Base {
   @Column({ name: 'conversation_id', type: 'varchar' })
   conversationId: string;
 
-  @ManyToOne(() => User, (user) => user.messages)
+  @ManyToOne(
+    () => User,
+    user => user.messages
+  )
   @JoinColumn({ name: 'user_id' })
-  user: User;
+  user?: User;
 
-  @ManyToOne(() => Conversation, (conversation) => conversation.messages)
+  @ManyToOne(
+    () => Conversation,
+    conversation => conversation.messages
+  )
   @JoinColumn({ name: 'conversation_id' })
-  conversation: Conversation;
+  conversation?: Conversation;
 }

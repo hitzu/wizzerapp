@@ -2,14 +2,12 @@ import { Request, Response } from 'express';
 import { UserRepository } from '../orm/repositories/UserRepository';
 import { ConversationUserRepository } from '../orm/repositories/ConversationUserRepository';
 import { GeneralError } from '../classes/general-error';
-import { Message } from '../orm/entities/Message';
-import { Conversation } from '../orm/entities/Conversation';
 
 const userRepository = new UserRepository();
 
 const createUser = async (req: Request, res: Response) => {
   try {
-    const { name } = req.body;    
+    const { name } = req.body;
     const userCreate = await userRepository.create({ name });
 
     res.status(200).send(userCreate);
@@ -20,7 +18,6 @@ const createUser = async (req: Request, res: Response) => {
 
 const getUsers = async (req: Request, res: Response) => {
   try {
-    
     const usersFound = await userRepository.find();
 
     res.status(200).send(usersFound);
@@ -32,10 +29,10 @@ const getUsers = async (req: Request, res: Response) => {
 const getUserById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const userFound = await userRepository.findOne({ where: {id} });
+    const userFound = await userRepository.findOne({ where: { id } });
 
     if (!userFound) {
-      throw new GeneralError(new Error, 'message not found', 404);
+      throw new GeneralError(new Error(), 'message not found', 404);
     }
     res.status(200).send(userFound);
   } catch (error) {
@@ -56,7 +53,7 @@ const updateUser = async (req: Request, res: Response) => {
 
 const deleteUser = async (req: Request, res: Response) => {
   try {
-    const { id} = req.body;
+    const { id } = req.body;
     await userRepository.softDelete(id);
 
     res.status(204).send();
@@ -65,17 +62,21 @@ const deleteUser = async (req: Request, res: Response) => {
   }
 };
 
-const getUserConversationsWithMessages = async (req: Request, res: Response) => {
+const getUserConversationsWithMessages = async (
+  req: Request,
+  res: Response
+) => {
   try {
     const { id } = req.params;
     const conversationUserRepository = new ConversationUserRepository();
     const qb = await conversationUserRepository.queryBuilder();
 
-    const messages = await qb.select(['ConversationUser'])
-    .innerJoinAndSelect('ConversationUser.conversation', 'conversation')
-    .innerJoinAndSelect('conversation.messages', 'messages')
-    .where('ConversationUser.user_id = :id', {id})
-    .getMany()
+    const messages = await qb
+      .select(['ConversationUser'])
+      .innerJoinAndSelect('ConversationUser.conversation', 'conversation')
+      .innerJoinAndSelect('conversation.messages', 'messages')
+      .where('ConversationUser.user_id = :id', { id })
+      .getMany();
 
     res.status(200).send(messages);
   } catch (error) {
@@ -83,4 +84,11 @@ const getUserConversationsWithMessages = async (req: Request, res: Response) => 
   }
 };
 
-export { createUser, getUsers, getUserById, updateUser, deleteUser, getUserConversationsWithMessages };
+export {
+  createUser,
+  getUsers,
+  getUserById,
+  updateUser,
+  deleteUser,
+  getUserConversationsWithMessages
+};

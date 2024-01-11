@@ -17,10 +17,9 @@
     "test": "jest --clearCache && jest",
     "db:start": "docker-compose up -d",
     "db:stop": "docker-compose rm -s -f",
+    "install": "npm run db:start && npm run migration:run:dev",
     "migration:run:dev": "NODE_PATH=./src ts-node ./node_modules/typeorm/cli.js migration:run --dataSource ./src/orm/config/data-source-migration",
-    "undo-migration:run:dev": "NODE_PATH=./src ts-node ./node_modules/typeorm/cli.js migration:revert --dataSource ./src/orm/config/data-source-migration",
-    "seed:run:dev": "PG_HOST=localhost NODE_PATH=./src ts-node ./node_modules/.bin/typeorm migration:run --config ./src/orm/config/ormconfig-seed.ts",
-    "orm:typeorm:migration": "typeorm migration:create -n ./src/orm/migrations/CreateWords"
+    "undo-migration:run:dev": "NODE_PATH=./src ts-node ./node_modules/typeorm/cli.js migration:revert --dataSource ./src/orm/config/data-source-migration"
   },
   "license": "public",
   "dependencies": {
