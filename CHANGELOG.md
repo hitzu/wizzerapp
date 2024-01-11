@@ -36,3 +36,7 @@
 ### 0.7.0
 
 - functional test and unit test
+
+### 1.0.0
+
+- Read me and postman collection

@@ -1,0 +1,334 @@
+{
+  "info": {
+    "_postman_id": "66d769a0-2867-4cb1-9baf-8897d028397b",
+    "name": "wizzerapp",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "24322614"
+  },
+  "item": [
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "create user",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"test 1\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:4000/users",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["users"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update user",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"id\": \"1e8419ad-013c-4a5a-ade5-0803def92de2\",\n    \"name\": \"adis\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:4000/users",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["users"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete user",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"id\": \"1e8419ad-013c-4a5a-ade5-0803def92de2\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:4000/users",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["users"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:4000/users",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["users"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get user by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:4000/users/:id",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["users", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "9a0e7aab-af04-46b3-a231-7e346ddab0f7"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get user conversations by id Copy",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:4000/users/:id/conversations",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["users", ":id", "conversations"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "7c1af18f-9c05-4324-829d-949f6d7bd971"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "messages",
+      "item": [
+        {
+          "name": "create message",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"content\": \"hola mundo\",\n    \"type\": \"text\",\n    \"userId\": \"53dfaa2f-9e64-4f09-958b-12f312ebeff8\",\n    \"conversationId\": \"6fbb48e5-d1cf-423e-b828-fc8b35b43b1d\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:4000/messages",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["messages"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update message",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"id\": \"299fa818-968d-4718-bcd0-143122f8f050\",\n    \"content\": \"hola mundo\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:4000/messages",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["messages"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete message",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"id\": \"ecdacc84-aebe-4382-b53a-4bd71132401b\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:4000/messages",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["messages"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all messages",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:4000/messages?limit=1&page=0&userId=83317e4d-8fc4-4195-92d5-ed123ed0d849",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["messages"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "1"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "userId",
+                  "value": "83317e4d-8fc4-4195-92d5-ed123ed0d849"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get message by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:4000/messages/:id",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["messages", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "ecdacc84-aebe-4382-b53a-4bd71132401b"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "conversation",
+      "item": [
+        {
+          "name": "create conversation",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"userId\": \"53dfaa2f-9e64-4f09-958b-12f312ebeff8\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:4000/conversations",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["conversations"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "join conversation",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"userId \": \"1e42346a-85a1-4450-ab3c-a9f1cc5f599a\",\n    \"conversationId\": \"1eba1e39-2ba9-4f20-b088-c35ddb39aecf\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:4000/conversations/join",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["conversations", "join"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete conversation",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"id\": \"ac5dadf7-51e5-4f8c-a542-65e61a2cd64d\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:4000/conversations",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["conversations"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
